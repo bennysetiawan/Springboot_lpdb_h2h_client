@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+   <Appenders>
+      <Console name="LogToConsole" target="SYSTEM_OUT">
+         <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+      </Console>
+      <!--<File name="LogToFile" fileName="logs/${date:yyyy-MM-dd HH:mm}-lpdb_h2h_agent.log">-->
+      <File name="LogToFile" fileName="logs/${date:yyyy-MM-dd}-lpdb_h2h_agent.log">
+         <PatternLayout>
+            <!--<Pattern>%X{userId} %d %p %c{1.} [%t] %m%n</Pattern>-->
+            <Pattern>%X{userId} %d{HH:mm:ss.SSS} %p %c{1.} [%t] %m%n</Pattern>
+            <!--<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>-->
+         </PatternLayout>
+      </File>
+   </Appenders>
+   <Loggers>
+      <Logger name="com.lpdb.h2h.agent" level="debug" additivity="false">
+         <AppenderRef ref="LogToFile"/>
+         <AppenderRef ref="LogToConsole"/>
+      </Logger>
+      <Logger name="org.springframework.boot" level="error" additivity="false">
+         <AppenderRef ref="LogToFile"/>
+         <AppenderRef ref="LogToConsole"/>
+      </Logger>
+      <Root level="error">
+         <AppenderRef ref="LogToFile"/>
+         <AppenderRef ref="LogToConsole"/>
+      </Root>
+   </Loggers>
+</Configuration>
